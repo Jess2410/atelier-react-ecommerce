@@ -476,7 +476,7 @@ button {
 }
 .button-wrapper {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding: 0 2rem;
 }
 /* using the has() relational pseudo selector to update our custom properties */

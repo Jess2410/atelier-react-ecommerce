@@ -1,6 +1,7 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { useDispatch } from "react-redux";
+import { addCart } from "../redux/cartSlice";
+import { Button } from "@mui/material";
 export type CardProduct = {
   brand: string;
   category: string;
@@ -15,14 +16,11 @@ export type CardProduct = {
   title: string;
 };
 const Card = ({ product }: { product: CardProduct }) => {
-  const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const onOpen = () => {
-    setOpen(!open);
-  };
   return (
-    <article onClick={() => navigate(`/products/${product.id}`)}>
+    <article>
       <div className="article-wrapper">
         <figure>
           <img src={product.images[0]} alt="" />
@@ -52,15 +50,16 @@ const Card = ({ product }: { product: CardProduct }) => {
             padding: "10px",
           }}
         >
-          <button onClick={onOpen}>Voir plus</button>
+          <button onClick={() => navigate(`/products/${product.id}`)}>
+            Voir plus
+          </button>
+          <Button
+            variant="contained"
+            onClick={() => dispatch(addCart(product))}
+          >
+            Add
+          </Button>
         </div>
-        {open && (
-          <div>
-            <ul className="ingredients"></ul>
-            <h3>Description</h3>
-            <p>{product.description}</p>
-          </div>
-        )}
       </div>
     </article>
   );

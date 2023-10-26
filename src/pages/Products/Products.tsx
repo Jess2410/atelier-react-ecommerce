@@ -1,6 +1,5 @@
 import { useEffect, useState, useContext } from "react";
 import Card from "../../components/Card";
-import Sidebar from "../../components/Sidebar";
 import { CategoryContext } from "../../context/CategoryProvider";
 
 const Products = () => {
@@ -22,11 +21,6 @@ const Products = () => {
     const dataProducts = await res.json();
     setProducts(dataProducts.products);
   };
-  console.log("🚀 CAT CONTEXT PRODUCTS:", selectedCategoryContext);
-  // console.log(
-  //   "🚀 ~ file: Products.tsx:6 ~ getProducts ~ dataProducts:",
-  //   products
-  // );
 
   useEffect(() => {
     getProductsByCategory();
@@ -37,11 +31,9 @@ const Products = () => {
   }, []);
   return (
     <div style={{ display: "flex" }}>
-      <Sidebar />
       <ul
         style={{
           display: "flex",
-          // width: "100vw",
           justifyContent: "center",
           maxWidth: 1500,
           flexWrap: "wrap",
